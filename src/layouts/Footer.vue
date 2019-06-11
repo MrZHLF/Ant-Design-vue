@@ -1,5 +1,5 @@
 <template>
-  <div>Ant Design ©2019 Created by Ant UED</div>
+  <div>Ant Design ©2019 個人vue案例</div>
 </template>
 
 <script>

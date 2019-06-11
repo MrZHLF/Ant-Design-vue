@@ -1,12 +1,18 @@
 <template>
-  <div>
+  <div :class="[`nav-theme-${navTheme}`, `nav-layout-${navLayout}`]">
     <a-layout id="components-layout-demo-side" style="min-height: 100vh">
-      <a-layout-sider collapsible v-model="collapsed" :trigger="null">
-        <div class="logo" />
-        <SiderMenu />
+      <a-layout-sider
+        v-if="navLayout === 'left'"
+        :theme="navTheme"
+        collapsible
+        v-model="collapsed"
+        :trigger="null"
+      >
+        <div class="logo">Vue Ant Design</div>
+        <SiderMenu :theme="navTheme" />
       </a-layout-sider>
       <a-layout>
-        <a-layout-header style="background: #fff; padding: 0">
+        <a-layout-header :class="navTheme === 'dark' ? 'dark' : 'light'">
           <a-icon
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
             @click="collapsed = !collapsed"
@@ -38,6 +44,14 @@ export default {
       collapsed: false
     };
   },
+  computed: {
+    navTheme() {
+      return this.$route.query.navTheme || "dark";
+    },
+    navLayout() {
+      return this.$route.query.navLayout || "left";
+    }
+  },
   components: {
     Header,
     SiderMenu,
@@ -56,5 +70,26 @@ export default {
 }
 .trigger:hover {
   background-color: #eee;
+}
+.logo {
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  overflow: hidden;
+}
+.nav-theme-dark >>> .logo {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.nav-layout-top .ant-layout .light {
+  background-color: white;
+}
+.nav-layout-top .ant-layout .dark {
+  background: #001529;
+}
+.ant-layout-header {
+  background-color: white;
 }
 </style>

@@ -1,34 +1,15 @@
-# antd-demo
+# Ant Design Pro Vue
 
-## Project setup
-```
-yarn install
-```
+## 使用vue-cli3.0結合Ant-Design搭建一個模板。
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+### 项目编译和运行
 
-### Run your tests
-```
-yarn run test
-```
++ 可以直接在git上下载项目源码。把github下载到本地
+  + git clone git@github.com:MrZHLF/Ant-Design-vue.git 
+  + 下載之後進入目錄。先npm install,
+  + 運行 npm serve
 
-### Lints and fixes files
-```
-yarn run lint
-```
 
-### Run your unit tests
-```
-yarn run test:unit
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### 開發中...... 
