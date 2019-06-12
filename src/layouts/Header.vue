@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    231323
+    歡迎Admin
   </div>
 </template>
 

@@ -7,6 +7,7 @@
         collapsible
         v-model="collapsed"
         :trigger="null"
+        width="256px"
       >
         <div class="logo">Vue Ant Design</div>
         <SiderMenu :theme="navTheme" />

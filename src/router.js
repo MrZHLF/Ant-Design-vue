@@ -13,6 +13,7 @@ const router = new Router({
   routes: [
     {
       path: "/user",
+      hideInMenu: true,
       component: () =>
         import(/* webpackChunkName: "layout" */ "./layouts/UserLayout.vue"),
       children: [
@@ -27,7 +28,8 @@ const router = new Router({
           name: "register",
           component: () =>
             import(
-              /* webpackChunkName: "register" */ "./views/User/Register.vue"
+              /* webpackChunkName: "register" */
+              "./views/User/Register.vue"
             )
         }
       ]
@@ -53,7 +55,8 @@ const router = new Router({
               meta: { title: "分析页" },
               component: () =>
                 import(
-                  /* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis.vue"
+                  /* webpackChunkName: "dashboard" */
+                  "./views/Dashboard/Analysis.vue"
                 )
             }
           ]
@@ -65,7 +68,7 @@ const router = new Router({
       path: "/form",
       name: "form",
       component: { render: h => h("router-view") },
-      meta: { icon: "form", title: "表单", authority: ["admin"] },
+      meta: { icon: "form", title: "表单" },
       children: [
         {
           path: "/form/basic-form",
@@ -91,7 +94,8 @@ const router = new Router({
               name: "info",
               component: () =>
                 import(
-                  /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1"
+                  /* webpackChunkName: "form" */
+                  "./views/Forms/StepForm/Step1"
                 )
             },
             {
@@ -99,7 +103,8 @@ const router = new Router({
               name: "confirm",
               component: () =>
                 import(
-                  /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2"
+                  /* webpackChunkName: "form" */
+                  "./views/Forms/StepForm/Step2"
                 )
             },
             {
@@ -107,7 +112,8 @@ const router = new Router({
               name: "result",
               component: () =>
                 import(
-                  /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3"
+                  /* webpackChunkName: "form" */
+                  "./views/Forms/StepForm/Step3"
                 )
             }
           ]
@@ -117,6 +123,7 @@ const router = new Router({
     {
       path: "*",
       name: "404",
+      hideInMenu: true,
       component: NotFound
     }
   ]
