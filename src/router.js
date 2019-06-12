@@ -15,30 +15,32 @@ const router = new Router({
       path: "/user",
       hideInMenu: true,
       component: () =>
-        import(/* webpackChunkName: "layout" */ "./layouts/UserLayout.vue"),
+        import(/* webpackChunkName: "layout" */ "./layouts/UserLayout"),
       children: [
+        {
+          path: "/user",
+          redirect: "/user/login"
+        },
         {
           path: "/user/login",
           name: "login",
           component: () =>
-            import(/* webpackChunkName: "login" */ "./views/User/Login.vue")
+            import(/* webpackChunkName: "user" */ "./views/User/Login")
         },
         {
           path: "/user/register",
           name: "register",
           component: () =>
-            import(
-              /* webpackChunkName: "register" */
-              "./views/User/Register.vue"
-            )
+            import(/* webpackChunkName: "user" */ "./views/User/Register")
         }
       ]
     },
     {
       path: "/",
       component: () =>
-        import(/* webpackChunkName: "layout" */ "./layouts/BasicLayout.vue"),
+        import(/* webpackChunkName: "layout" */ "./layouts/BasicLayout"),
       children: [
+        // dashboard
         {
           path: "/",
           redirect: "/dashboard/analysis"
@@ -56,65 +58,65 @@ const router = new Router({
               component: () =>
                 import(
                   /* webpackChunkName: "dashboard" */
-                  "./views/Dashboard/Analysis.vue"
+                  "./views/Dashboard/Analysis"
                 )
             }
           ]
-        }
-      ]
-    },
-    // form
-    {
-      path: "/form",
-      name: "form",
-      component: { render: h => h("router-view") },
-      meta: { icon: "form", title: "表单" },
-      children: [
-        {
-          path: "/form/basic-form",
-          name: "basicform",
-          meta: { title: "基础表单" },
-          component: () =>
-            import(/* webpackChunkName: "form" */ "./views/Forms/BasicForm")
         },
+        // form
         {
-          path: "/form/step-form",
-          name: "stepform",
-          hideChildrenInMenu: true,
-          meta: { title: "分布表单" },
-          component: () =>
-            import(/* webpackChunkName: "form" */ "./views/Forms/StepForm"),
+          path: "/form",
+          name: "form",
+          component: { render: h => h("router-view") },
+          meta: { icon: "form", title: "表单" },
           children: [
             {
+              path: "/form/basic-form",
+              name: "basicform",
+              meta: { title: "基础表单" },
+              component: () =>
+                import(/* webpackChunkName: "form" */ "./views/Forms/BasicForm")
+            },
+            {
               path: "/form/step-form",
-              redirect: "/form/step-form/info"
-            },
-            {
-              path: "/form/step-form/info",
-              name: "info",
+              name: "stepform",
+              hideChildrenInMenu: true,
+              meta: { title: "分布表单" },
               component: () =>
-                import(
-                  /* webpackChunkName: "form" */
-                  "./views/Forms/StepForm/Step1"
-                )
-            },
-            {
-              path: "/form/step-form/confirm",
-              name: "confirm",
-              component: () =>
-                import(
-                  /* webpackChunkName: "form" */
-                  "./views/Forms/StepForm/Step2"
-                )
-            },
-            {
-              path: "/form/step-form/result",
-              name: "result",
-              component: () =>
-                import(
-                  /* webpackChunkName: "form" */
-                  "./views/Forms/StepForm/Step3"
-                )
+                import(/* webpackChunkName: "form" */ "./views/Forms/StepForm"),
+              children: [
+                {
+                  path: "/form/step-form",
+                  redirect: "/form/step-form/info"
+                },
+                {
+                  path: "/form/step-form/info",
+                  name: "info",
+                  component: () =>
+                    import(
+                      /* webpackChunkName: "form" */
+                      "./views/Forms/StepForm/Step1"
+                    )
+                },
+                {
+                  path: "/form/step-form/confirm",
+                  name: "confirm",
+                  component: () =>
+                    import(
+                      /* webpackChunkName: "form" */
+                      "./views/Forms/StepForm/Step2"
+                    )
+                },
+                {
+                  path: "/form/step-form/result",
+                  name: "result",
+                  component: () =>
+                    import(
+                      /* webpackChunkName: "form" */
+                      "./views/Forms/StepForm/Step3"
+                    )
+                }
+              ]
             }
           ]
         }
@@ -128,7 +130,6 @@ const router = new Router({
     }
   ]
 });
-
 router.beforeEach((to, from, next) => {
   if (to.path != from.path) {
     NProgress.start();
