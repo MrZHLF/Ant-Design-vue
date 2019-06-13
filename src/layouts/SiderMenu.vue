@@ -23,6 +23,7 @@
 
 <script>
 import SubMenu from "./SubMenu";
+import { check } from "./../utils/auth";
 export default {
   props: {
     theme: {
@@ -53,8 +54,11 @@ export default {
     },
     getMenuData(routes = [], parentKeys = [], selectedKey) {
       const menuData = [];
-      routes.forEach(item => {
-        // console.log(item);
+      for (let item of routes) {
+        if (item.meta && item.meta.authority && !check(item.meta.authority)) {
+          //路由权限校验
+          break;
+        }
         if (item.name && !item.hideInMenu) {
           this.openKeysMap[item.path] = parentKeys;
           this.selectedKeysMap[item.path] = [selectedKey || item.path];
@@ -65,6 +69,7 @@ export default {
               ...parentKeys,
               item.path
             ]);
+            // console.log(newItem.children);
           } else {
             this.getMenuData(
               item.children,
@@ -81,8 +86,9 @@ export default {
           menuData.push(
             ...this.getMenuData(item.children, [...parentKeys, item.path])
           );
+          // console.log(menuData, "menuData");
         }
-      });
+      }
       return menuData;
     }
   },
