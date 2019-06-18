@@ -3,8 +3,11 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+import form from "./modules/form";
+
 export default new Vuex.Store({
   state: {},
-  mutations: {},
-  actions: {}
+  modules: {
+    form
+  }
 });

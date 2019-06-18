@@ -25,7 +25,7 @@ export default {
       //   }
       // );
       this.getChartData();
-    }, 5000);
+    }, 500000);
   },
   methods: {
     getChartData() {
